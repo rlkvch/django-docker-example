@@ -59,10 +59,30 @@ jobs:
             ghcr.io/rlkvch/django-docker-example:develop-${{ env.GITHUB_SHA_SHORT }}
           push: ${{ github.ref == 'refs/heads/develop' }}
 
-  deploy:
+  deploy-to-prod:
     name: Build Docker image
     runs-on: ubuntu-latest
     environment: 'Production'
+    needs: build
+    steps:
+
+      - name: Test
+        uses: oNaiPs/secrets-to-env-action@v1
+        with:
+          secrets: ${{ toJSON(secrets) }}
+      - run: |
+          touch secrets
+          cat $MY_SECRET > secrets
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v3
+        with:
+          name: secrets
+          path: secrets
+
+  deploy-to-dev:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    environment: 'Develop'
     needs: build
     steps:
 
