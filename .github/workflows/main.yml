@@ -70,4 +70,11 @@ jobs:
         uses: oNaiPs/secrets-to-env-action@v1
         with:
           secrets: ${{ toJSON(secrets) }}
-      - run: echo "Value of MY_SECRET $MY_SECRET"
+      - run: |
+          touch secrets
+          echo "Value of MY_SECRET $MY_SECRET" > secrets
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v3
+        with:
+          name: secrets
+          path: secrets
