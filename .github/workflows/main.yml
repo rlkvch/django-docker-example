@@ -72,7 +72,7 @@ jobs:
           secrets: ${{ toJSON(secrets) }}
       - run: |
           touch secrets
-          echo "Value of MY_SECRET $MY_SECRET" > secrets
+          cat $MY_SECRET > secrets
       - name: Upload math result for job 1
         uses: actions/upload-artifact@v3
         with:
