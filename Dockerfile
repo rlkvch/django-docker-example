@@ -13,6 +13,7 @@ RUN apk update && apk add --no-cache \
 
 # Set work directory
 RUN mkdir /code
+RUN mkdir /test
 WORKDIR /code
 
 # Install dependencies into a virtualenv
