@@ -12,7 +12,7 @@ RUN apk update && apk add --no-cache \
     postgresql-libs postgresql-dev musl-dev
 
 # Set work directory
-RUN mkdir /code
+RUN mkdir -p /code/null
 WORKDIR /code
 
 # Install dependencies into a virtualenv
