@@ -38,4 +38,3 @@ jobs:
           context: .
           tags: |
             ghcr.io/rlkvch/django-docker-example:dev-${{ env.GITHUB_SHA_SHORT }}
-          push: ${{ github.ref == 'refs/heads/main' }}
