@@ -18,7 +18,7 @@ on:
 jobs:
 
   build:
-    name: Build Docker image
+    name: build-and-publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -58,3 +58,13 @@ jobs:
           tags: |
             ghcr.io/rlkvch/django-docker-example:develop-${{ env.GITHUB_SHA_SHORT }}
           push: ${{ github.ref == 'refs/heads/develop' }}
+
+  deploy:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    environment: 'Production'
+    needs: build-and-publish
+    steps:
+
+      - name: Test
+        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
