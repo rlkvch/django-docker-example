@@ -63,7 +63,7 @@ jobs:
     name: Build Docker image
     runs-on: ubuntu-latest
     environment: 'Production'
-    needs: build-and-publish
+    needs: build
     steps:
 
       - name: Test
