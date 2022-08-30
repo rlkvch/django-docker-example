@@ -3,15 +3,12 @@ name: Build and Publish
 on:
   push:
     branches:
-      - main
-      - master
-      - 'releases/**'
+      - develop
+      - 'feature/**'
 
   pull_request:
     branches:
-      - main
-      - master
-      - 'releases/**'
+      - develop
 
 jobs:
   build:
@@ -40,5 +37,5 @@ jobs:
         with:
           context: .
           tags: |
-            ghcr.io/rlkvch/django-docker-example:prod-${{ env.GITHUB_SHA_SHORT }}
+            ghcr.io/rlkvch/django-docker-example:dev-${{ env.GITHUB_SHA_SHORT }}
           push: ${{ github.ref == 'refs/heads/main' }}
