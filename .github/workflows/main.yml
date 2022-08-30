@@ -67,4 +67,7 @@ jobs:
     steps:
 
       - name: Test
-        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+        uses: oNaiPs/secrets-to-env-action@v1
+        with:
+          secrets: ${{ toJSON(secrets) }}
+      - run: echo "Value of MY_SECRET: $MY_SECRET"
